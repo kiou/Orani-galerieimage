@@ -1,0 +1,55 @@
+{% extends "GlobalBundle:Client/Layout:layout.html.twig" %}
+
+{% block metaTitle %}{{ galerie.referencement.title }}{% endblock %}
+{% block metaDescription %}{{ galerie.referencement.description }}{% endblock %}
+
+{% block openGraph %}
+    {% include"ReferencementBundle:Client/Include:view.html.twig" with {'data': galerie} %}
+{% endblock %}
+
+{% block contentitle %}
+    <h1>{{ galerie.titre }}</h1>
+{% endblock %}
+
+{% block breadcrumb %}
+    <div id="breadcrumb">
+        {{ include("GlobalBundle:Client/Include:breadcrumb.html.twig", {'breadcrumb':breadcrumb }) }}
+    </div>
+{% endblock %}
+
+{% block content %}
+
+    <div class="galerieImageViewImage">
+        {% if galerie.image %}
+            <img src="{{ asset('img/galerie/tmp/' ~ galerie.image) }}">
+        {% endif %}
+    </div>
+
+    <div class="galerieImageViewDate">
+        <p><strong>Date:</strong> {{ galerie.created|date("d/m/Y") }}</p>
+    </div>
+
+    {% if galerie.categorie %}
+        <div class="galerieImageViewCategorie">
+            <p><strong>Catégorie:</strong> {{ galerie.categorie.nom }}</p>
+        </div>
+    {% endif %}
+
+    <div class="wysiwyg">
+        {{ galerie.contenu|raw }}
+    </div>
+
+    {% if galerie.images|length > 0 %}
+        <div class="galeriesImagesListe">
+            <h2>Liste des images</h2>
+            {% for image in galerie.images %}
+                <div class="galerieImageListe">
+                    <a href="{{ asset('img/galerie/tmp/' ~ image.image) }}" data-lightbox="lightbox" data-title="{{ image.titre }}"><img src="{{ asset('img/galerie/miniature/' ~ image.image) }}"></a>
+                </div>
+            {% endfor %}
+
+            <div class="clear"></div>
+        </div>
+    {% endif %}
+
+{% endblock %}

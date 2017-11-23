@@ -1,0 +1,58 @@
+/* GalerieImageBundle */
+.galeriesImages{
+    margin: 0px -15px 0px -15px;
+}
+
+.galerieImage{
+    float: left;
+    width: calc((100% / 3) - 30px);
+    margin: 0px 15px 30px 15px;
+    background-color: lighten($grisClair,13%);
+    padding:20px;
+    min-height: 400px;
+}
+
+.galerieImageTitre{
+    margin-bottom: 10px;
+}
+
+.galerieImageImage{
+    img{
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
+
+.galerieImageDate{
+    margin-bottom: 10px;
+}
+
+.galerieImageResume{
+    margin-bottom: 15px;
+}
+
+.galerieImageLien{
+    a{
+        font-size: 14px;
+    }
+}
+
+.galerieImageViewImage{
+    img{
+        width: 100%;
+        margin-bottom: 20px;
+    }
+}
+
+.galerieImageViewDate,
+.galerieImageViewCategorie{
+    margin-bottom: 20px;
+}
+
+.galerieImageListe{
+    width: 25%;
+    float: left;
+    img{
+        width: 100%;
+    }
+}

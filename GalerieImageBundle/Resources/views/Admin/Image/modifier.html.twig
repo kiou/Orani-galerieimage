@@ -1,0 +1,38 @@
+{% extends "GlobalBundle:Admin/Layout:layout.html.twig" %}
+
+{% block contentTitre %}Modifier une image {% endblock %}
+
+{% block breadcrumb %}
+	<div id="breadcrumb">
+		{{ include("GlobalBundle:Admin/Include:breadcrumb.html.twig") }}
+	</div>
+{% endblock %}
+
+{% block content %}
+
+    {{ form_start(form, {'attr': {novalidate: 'novalidate'}}) }}
+
+        {{ form_errors(form) }}
+
+        {{ form_label(form.titre, "Titre *") }}
+        {{ form_errors(form.titre) }}
+        {{ form_widget(form.titre, {'attr': {'class': 'form-elem big'}}) }}
+
+        <div class="form-image big">
+            <img src="{{ asset('img/galerie/tmp/' ~ image.image) }}">
+        </div>
+
+        {{ form_label(form.fileimage, "Image *") }}
+        {{ form_errors(form.fileimage) }}
+        {{ form_widget(form.fileimage, {'attr': {'class': 'form-elem big'}}) }}
+        <div class="form-legende">
+            Taille minimum: 640px de large par 480px de haut<br>Poid maximum : 3Mo<br>Format : jpg, jpeg, png
+        </div>
+
+        <br>
+
+        {{ form_rest(form) }}
+
+    {{ form_end(form) }}
+
+{% endblock %}
