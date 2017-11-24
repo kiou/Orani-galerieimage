@@ -1,0 +1,117 @@
+admin_diaporama_manager:
+    path:     /admin/diaporama/gestion
+    defaults: { _controller: DiaporamaBundle:Galerie:managerAdmin }
+
+admin_diaporama_ajouter:
+    path:     /admin/diaporama/ajouter
+    defaults: { _controller: DiaporamaBundle:Galerie:ajouterAdmin }
+
+admin_diaporama_publier:
+    path:     /admin/diaporama/publier/{id}
+    defaults: { _controller: DiaporamaBundle:Galerie:publierAdmin }
+    requirements:
+        id: \d+
+
+admin_diaporama_poid:
+    path:     /admin/diaporama/poid/{id}/{poid}
+    defaults:
+        _controller: DiaporamaBundle:Galerie:poidAdmin
+        poid : 1
+    requirements:
+        id: \d+
+        poid: \d+
+
+admin_diaporama_modifier:
+    path:     /admin/diaporama/modifier/{id}
+    defaults: { _controller: DiaporamaBundle:Galerie:modifierAdmin }
+    requirements:
+        id: \d+
+
+admin_diaporama_supprimer:
+    path:     /admin/diaporama/supprimer/{id}
+    defaults: { _controller: DiaporamaBundle:Galerie:supprimerAdmin }
+    requirements:
+        id: \d+
+
+admin_diaporama_supprimer_image:
+    path:     /admin/diaporama/supprimer-image/{id}
+    defaults: { _controller: DiaporamaBundle:Galerie:AdminSupprimerImage }
+    requirements:
+        id: \d+
+
+client_diaporama_manager:
+    path:     /diaporamas
+    defaults: { _controller: DiaporamaBundle:Galerie:managerClient }
+
+client_diaporama_view:
+    path:     /diaporama/{slug}/{id}
+    defaults: { _controller: DiaporamaBundle:Galerie:viewClient }
+    requirements:
+        slug: ([a-z-0-9]*)
+        id: \d+
+
+#Catégorie
+admin_diaporama_categorie_manager:
+    path:     /admin/diaporama-categorie/manager
+    defaults: { _controller: DiaporamaBundle:Categorie:managerAdmin }
+
+admin_diaporama_categorie_ajouter:
+    path:     /admin/diaporama-categorie/ajouter
+    defaults: { _controller: DiaporamaBundle:Categorie:ajouterAdmin }
+
+admin_diaporama_categorie_modifier:
+    path:     /admin/diaporama-categorie/modifier/{id}
+    defaults: { _controller: DiaporamaBundle:Categorie:modifierAdmin }
+    requirements:
+        id: \d+
+
+admin_diaporama_categorie_supprimer:
+    path:     /admin/diaporama-categorie/supprimer/{id}
+    defaults: { _controller: DiaporamaBundle:Categorie:supprimerAdmin }
+    requirements:
+        id: \d+
+
+#Image
+admin_diaporama_image_manager:
+    path:     /admin/diaporama-image/manager/{galerie}
+    defaults: { _controller: DiaporamaBundle:Image:managerAdmin }
+    requirements:
+        galerie: \d+
+
+admin_diaporama_image_ajouter:
+    path:     /admin/diaporama-image/ajouter/{galerie}
+    defaults: { _controller: DiaporamaBundle:Image:ajouterAdmin }
+    requirements:
+        galerie: \d+
+
+admin_diaporama_image_publier:
+    path:     /admin/diaporama-image/publier/{galerie}/{id}
+    defaults: { _controller: DiaporamaBundle:Image:publierAdmin }
+    requirements:
+        galerie: \d+
+        id: \d+
+
+admin_diaporama_image_modifier:
+    path:     /admin/diaporama-image/modifier/{galerie}/{id}
+    defaults: { _controller: DiaporamaBundle:Image:modifierAdmin }
+    requirements:
+        galerie: \d+
+        id: \d+
+
+admin_diaporama_image_supprimer:
+    path:     /admin/diaporama-image/supprimer/{galerie}/{id}
+    defaults: { _controller: DiaporamaBundle:Image:supprimerAdmin }
+    requirements:
+        galerie: \d+
+        id: \d+
+
+admin_diaporama_image_poid:
+    path:     /admin/diaporama-image/poid/{galerie}/{id}/{poid}
+    defaults:
+        _controller: DiaporamaBundle:Image:poidAdmin
+        poid : 1
+    requirements:
+        galerie: \d+
+        id: \d+
+        poid: \d+
+

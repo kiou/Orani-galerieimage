@@ -14,6 +14,7 @@
 ## Client
 * Liste des galeries
 * Afficher une galerie
+* Trier par catégorie
 * Template la liste des derniéres galeries
 
 ## Dépendances
@@ -27,29 +28,29 @@
 ## Installation
 ### Menu
 ```twig
-{% set menuGalerieimage = ['admin_galerieimage_manager', 'admin_galerieimage_ajouter', 'admin_galerieimage_modifier','admin_galerieimage_categorie_manager', 'admin_galerieimage_categorie_modifier', 'admin_galerieimage_image_manager','admin_galerieimage_image_ajouter','admin_galerieimage_image_modifier'] %}
+{% set menuDiaporama = ['admin_diaporama_manager', 'admin_diaporama_ajouter', 'admin_diaporama_modifier','admin_diaporama_categorie_manager', 'admin_diaporama_categorie_modifier', 'admin_diaporama_image_manager','admin_diaporama_image_ajouter','admin_diaporama_image_modifier'] %}
 
-<a href="#" data-nav="galerieimage-menu" class="menuNav {{ getCurrentMenu(menuGalerieimage) }}"> <i class="fa fa-picture-o"></i> Galeries d'images <i class="fa fa-angle-right"></i></a>
-<ul id="galerieimage-menu" class="{{ getCurrentMenu(menuGalerieimage) }}">
-    <li class="{{ getCurrentMenu(['admin_galerieimage_ajouter']) }}"><a href="{{ path('admin_galerieimage_ajouter')}}">Ajouter une galerie d'image</a></li>
-    <li class="{{ getCurrentMenu(['admin_galerieimage_manager']) }}"><a href="{{ path('admin_galerieimage_manager')}}">Gestion des galeries d'images</a></li>
-    <li class="{{ getCurrentMenu(['admin_galerieimage_categorie_manager']) }}"><a href="{{ path('admin_galerieimage_categorie_manager')}}">Gestion des catégories</a></li>
+<a href="#" data-nav="diaporama-menu" class="menuNav {{ getCurrentMenu(menuDiaporama) }}"> <i class="fa fa-picture-o"></i> Galeries d'images <i class="fa fa-angle-right"></i></a>
+<ul id="diaporama-menu" class="{{ getCurrentMenu(menuDiaporama) }}">
+    <li class="{{ getCurrentMenu(['admin_diaporama_ajouter']) }}"><a href="{{ path('admin_diaporama_ajouter')}}">Ajouter une galerie d'image</a></li>
+    <li class="{{ getCurrentMenu(['admin_diaporama_manager']) }}"><a href="{{ path('admin_diaporama_manager')}}">Gestion des galeries d'images</a></li>
+    <li class="{{ getCurrentMenu(['admin_diaporama_categorie_manager']) }}"><a href="{{ path('admin_diaporama_categorie_manager')}}">Gestion des catégories</a></li>
 </ul>
 ```
 
 ### Fichier
 * app/AppKernel.php
 ```php
-new GalerieImageBundle\GalerieImageBundle(),
+new DiaporamaBundle\DiaporamaBundle(),
 ```
 * app/config.yml
 ```yml
-- { resource: "@GalerieImageBundle/Resources/config/services.yml" }
+- { resource: "@DiaporamaBundle/Resources/config/services.yml" }
 ```
 * app/routing.yml
 ```yml
-galerieimage
-    resource: "@GalerieImageBundle/Resources/config/routing.yml"
+diaporama:
+    resource: "@DiaporamaBundle/Resources/config/routing.yml"
     prefix:   /
 ```
 ## Client
