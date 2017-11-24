@@ -38,7 +38,7 @@
                 <div class="form-image big">
                     <img src="{{ asset('img/galerie/tmp/' ~ galerie.image) }}">
                     <br>
-                    <a href="{{ path('admin_galerieimage_supprimer_image',{'id': galerie.id})}}" class="btn rouge sweetDeleteImage" data-parent="ajaxImage2"><i class="fa fa-trash"></i> Supprimer</a>
+                    <a href="{{ path('admin_diaporama_supprimer_image',{'id': galerie.id})}}" class="btn rouge sweetDeleteImage" data-parent="ajaxImage2"><i class="fa fa-trash"></i> Supprimer</a>
                 </div>
             </div>
         {% endif %}

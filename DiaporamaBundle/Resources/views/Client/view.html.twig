@@ -53,4 +53,7 @@
         </div>
     {% endif %}
 
+    <br>
+    {% include"GlobalBundle:Social:partage.html.twig" with {'titre': galerie.titre, 'url': path('client_diaporama_view',{'slug': galerie.slug, 'id': galerie.id})} %}
+
 {% endblock %}
