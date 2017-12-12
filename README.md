@@ -31,7 +31,7 @@
 {% set menuDiaporama = ['admin_diaporama_manager', 'admin_diaporama_ajouter', 'admin_diaporama_modifier','admin_diaporama_categorie_manager', 'admin_diaporama_categorie_modifier', 'admin_diaporama_image_manager','admin_diaporama_image_ajouter','admin_diaporama_image_modifier'] %}
 
 <a href="#" data-nav="diaporama-menu" class="menuNav {{ getCurrentMenu(menuDiaporama) }}"> <i class="fa fa-picture-o"></i> Galeries d'images <i class="fa fa-angle-right"></i></a>
-<ul id="diaporama-menu" class="{{ getCurrentMenu(menuDiaporama) }}">
+<ul class="diaporama-menu {{ getCurrentMenu(menuDiaporama) }}">
     <li class="{{ getCurrentMenu(['admin_diaporama_ajouter']) }}"><a href="{{ path('admin_diaporama_ajouter')}}">Ajouter une galerie d'image</a></li>
     <li class="{{ getCurrentMenu(['admin_diaporama_manager']) }}"><a href="{{ path('admin_diaporama_manager')}}">Gestion des galeries d'images</a></li>
     <li class="{{ getCurrentMenu(['admin_diaporama_categorie_manager']) }}"><a href="{{ path('admin_diaporama_categorie_manager')}}">Gestion des catégories</a></li>
