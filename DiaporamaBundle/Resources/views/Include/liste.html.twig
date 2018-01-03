@@ -22,7 +22,7 @@
                 </div>
 
                 <div class="galerieLien">
-                    <a href="{{ path('client_diaporama_view',{'slug': galerie.slug, 'id': galerie.id})}}"><i class="fa fa-angle-right"></i> Voir plus</a>
+                    <a href="{{ path('client_diaporama_view',{'slug': galerie.slug, 'id': galerie.id})}}"><i class="fa fa-angle-right"></i> {{ 'diaporama.client.link.plus'|trans }}</a>
                 </div>
             </div>
         {% endfor %}

@@ -48,13 +48,14 @@ class GalerieController extends Controller
         $rechercheService = $this->get('recherche.service');
         $recherches = $rechercheService->setRecherche('diaporama_manager', array(
                 'recherche',
+                'langue'
             )
         );
 
         /* La liste des galeries d'images */
         $galeries = $this->getDoctrine()
                          ->getRepository('DiaporamaBundle:Galerie')
-                         ->getAllGaleries($recherches['recherche'], null, true);
+                         ->getAllGaleries($recherches['recherche'], null, $recherches['langue'], true);
 
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
@@ -63,9 +64,13 @@ class GalerieController extends Controller
             50/*limit per page*/
         );
 
+        /* La liste des langues */
+        $langues = $this->getDoctrine()->getRepository('GlobalBundle:Langue')->findAll();
+
         return $this->render('DiaporamaBundle:Admin:manager.html.twig',array(
                 'pagination' => $pagination,
-                'recherches' => $recherches
+                'recherches' => $recherches,
+                'langues' => $langues
             )
         );
     }
@@ -185,12 +190,12 @@ class GalerieController extends Controller
         /* La liste des galeries d'images */
         $galeries = $this->getDoctrine()
                          ->getRepository('DiaporamaBundle:Galerie')
-                         ->getAllGaleries(null, $recherches['categorie'], false);
+                         ->getAllGaleries(null, $recherches['categorie'], $request->getLocale(), false);
 
         /* La liste des catégories */
         $categories = $this->getDoctrine()
                            ->getRepository('DiaporamaBundle:Categorie')
-                           ->findBy([],['id' => 'DESC']);
+                           ->getAllCategories($request->getLocale());
 
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
@@ -221,7 +226,7 @@ class GalerieController extends Controller
 
         /* BreadCrumb */
         $breadcrumb = array(
-            'Les galeries d\'images' => $this->generateUrl('client_diaporama_manager'),
+            $this->get('translator')->trans('diaporama.client.view.breadcrumb.niveau1') => $this->generateUrl('client_diaporama_manager'),
             $galerie->getTitre() => ''
         );
 
@@ -235,12 +240,12 @@ class GalerieController extends Controller
     /**
      * Block template
      */
-    public function lastGalerieAction($limit)
+    public function lastGalerieAction(Request $request, $limit)
     {
 
         $galeries = $this->getDoctrine()
                          ->getRepository('DiaporamaBundle:Galerie')
-                         ->getAllGaleries(null, null, false, $limit);
+                         ->getAllGaleries(null, null, $request->getLocale(), false, $limit);
 
         return $this->render( 'DiaporamaBundle:Include:liste.html.twig',array(
                 'galeries' => $galeries

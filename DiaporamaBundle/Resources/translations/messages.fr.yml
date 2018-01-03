@@ -1,0 +1,19 @@
+diaporama:
+    client:
+        label:
+            categorieall: Choisir une catégorie
+            date: Date:
+            categorie: Catégorie:
+        link:
+            plus: Voir plus
+        validators:
+            empty: "Aucune galerie d'image"
+        images:
+            title: Liste des images
+        manager:
+            metatitle: "Les galeries d'image"
+            metadescription: "Les galeries d'image"
+            title: "Les galeries d'image"
+        view:
+            breadcrumb:
+                niveau1: "Les galeries d'image"

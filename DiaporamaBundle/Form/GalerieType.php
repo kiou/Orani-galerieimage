@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use ReferencementBundle\Form\ReferencementType;
+use GlobalBundle\Form\Type\LangueType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class GalerieType extends AbstractType
@@ -32,6 +33,7 @@ class GalerieType extends AbstractType
             ->add('resume', TextareaType::class)
             ->add('contenu', TextareaType::class)
             ->add('referencement', ReferencementType::class)
+            ->add('langue', LangueType::class)
             ->add('Enregistrer', SubmitType::class, array(
                     'attr' => array('class' => 'form-submit turquoise medium')
                 )

@@ -1,18 +1,16 @@
 {% extends "GlobalBundle:Client/Layout:layout.html.twig" %}
 
-{% block metaTitle %}Meta title{% endblock %}
-{% block metaDescription %}Meta description{% endblock %}
-
-{% block contentitle %}
-    <h1>Les galeries d'images</h1>
-{% endblock %}
+{% block metaTitle %}{{ 'diaporama.client.manager.metatitle'|trans }}{% endblock %}
+{% block metaDescription %}{{ 'diaporama.client.manager.metadescription'|trans }}{% endblock %}
 
 {% block content %}
+    <h1>{{ 'diaporama.client.manager.title'|trans }}</h1>
+
     <div class="recherche">
         <form action="{{ path('client_diaporama_manager') }}" method="post">
 
             <select name="categorie">
-                <option value="">Choisir une catégorie</option>
+                <option value="">{{ 'diaporama.client.label.categorieall'|trans }}</option>
                 {% for categorie in categories %}
                     {% if recherches.categorie == categorie.id %}
                         <option value="{{ categorie.id }}" selected>{{ categorie.nom }}</option>
@@ -49,11 +47,11 @@
                 </div>
 
                 <div class="galerieLien">
-                    <a href="{{ path('client_diaporama_view',{'slug': galerie.slug, 'id': galerie.id})}}"><i class="fa fa-angle-right"></i> Voir plus</a>
+                    <a href="{{ path('client_diaporama_view',{'slug': galerie.slug, 'id': galerie.id})}}"><i class="fa fa-angle-right"></i> {{ 'diaporama.client.link.plus'|trans }}</a>
                 </div>
             </div>
         {% else %}
-            <p>Aucune galerie d'image</p>
+            <p>{{ 'diaporama.client.validators.empty'|trans }}</p>
         {% endfor %}
 
         <div class="clear"></div>

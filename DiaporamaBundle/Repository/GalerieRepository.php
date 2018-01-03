@@ -11,7 +11,7 @@ use Doctrine\ORM\Query\Expr;
  */
 class GalerieRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function getAllGaleries($recherche = null, $categorie = null, $admin = false, $limit = null)
+    public function getAllGaleries($recherche = null, $categorie = null, $langue = null, $admin = false, $limit = null)
     {
         $qb = $this->createQueryBuilder('g');
 
@@ -29,6 +29,14 @@ class GalerieRepository extends \Doctrine\ORM\EntityRepository
         if(!empty($categorie)){
             $qb->andWhere('g.categorie = :categorie')
                ->setParameter('categorie', $categorie);
+        }
+
+        /**
+         * recherche via la langue
+         */
+        if(!empty($langue)){
+            $qb->andWhere('g.langue = :langue')
+               ->setParameter('langue', $langue);
         }
 
         if($admin) $qb->orderBy('g.id', 'DESC');

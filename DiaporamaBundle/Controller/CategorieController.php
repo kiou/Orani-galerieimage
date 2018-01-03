@@ -12,9 +12,9 @@ class CategorieController extends Controller
 {
 
     /**
-     * Gestion
+     * Ajouter
      */
-    public function managerAdminAction(Request $request)
+    public function ajouterAdminAction(Request $request)
     {
         $categorie = new Categorie;
         $form = $this->get('form.factory')->create(CategorieType::class, $categorie);
@@ -29,13 +29,36 @@ class CategorieController extends Controller
             return $this->redirect($this->generateUrl('admin_diaporama_categorie_manager'));
         }
 
+        return $this->render('DiaporamaBundle:Admin/Categorie:ajouter.html.twig',
+            array(
+                'form' => $form->createView()
+            )
+        );
+    }
+
+    /**
+     * Gestion
+     */
+    public function managerAdminAction(Request $request)
+    {
+        /* Services */
+        $rechercheService = $this->get('recherche.service');
+        $recherches = $rechercheService->setRecherche('diaporamacategorie_manager', array(
+                'langue'
+            )
+        );
+
         $categories = $this->getDoctrine()
                            ->getRepository('DiaporamaBundle:Categorie')
-                           ->findBy(array(),array('id' => 'DESC'));
+                           ->getAllCategories($recherches['langue']);
+
+        /* La liste des langues */
+        $langues = $this->getDoctrine()->getRepository('GlobalBundle:Langue')->findAll();
 
         return $this->render('DiaporamaBundle:Admin/Categorie:manager.html.twig',array(
-                'form' => $form->createView(),
                 'categories' => $categories,
+                'recherches' => $recherches,
+                'langues' => $langues
             )
         );
     }

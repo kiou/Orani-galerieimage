@@ -10,4 +10,21 @@ namespace DiaporamaBundle\Repository;
  */
 class CategorieRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getAllCategories($langue)
+    {
+        $qb = $this->createQueryBuilder('c');
+
+        /**
+         * recherche via la langue
+         */
+        if(!empty($langue)){
+            $qb->andWhere('c.langue = :langue')
+               ->setParameter('langue', $langue);
+        }
+
+        $qb->orderBy('c.id', 'DESC');
+
+        return $query = $qb->getQuery()->getResult();
+    }
+
 }
