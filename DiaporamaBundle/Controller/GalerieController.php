@@ -212,7 +212,7 @@ class GalerieController extends Controller
         );
     }
 
-    /*
+    /**
      * View
      */
     public function viewClientAction($id)
