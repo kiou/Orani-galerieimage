@@ -201,7 +201,7 @@ class GalerieController extends Controller
         $pagination = $paginator->paginate(
             $galeries, /* query NOT result */
             $request->query->getInt('page', 1) /*page number*/,
-            16 /*limit per page*/
+            9 /*limit per page*/
         );
 
         return $this->render('DiaporamaBundle:Client:manager.html.twig', array(

@@ -3,13 +3,15 @@
 {% block metaTitle %}{{ 'diaporama.client.manager.metatitle'|trans }}{% endblock %}
 {% block metaDescription %}{{ 'diaporama.client.manager.metadescription'|trans }}{% endblock %}
 
-{% block content %}
+{% block contentTitle %}
     <h1>{{ 'diaporama.client.manager.title'|trans }}</h1>
+{% endblock %}
 
+{% block content %}
     <div class="recherche">
         <form action="{{ path('client_diaporama_manager') }}" method="post">
 
-            <select name="categorie">
+            <select name="categorie" class="form-elem form-recherche">
                 <option value="">{{ 'diaporama.client.label.categorieall'|trans }}</option>
                 {% for categorie in categories %}
                     {% if recherches.categorie == categorie.id %}
@@ -20,34 +22,34 @@
                 {% endfor %}
             </select>
 
-            <button type="submit" name="addRecherche"><i class="fa fa-search"></i></button>
+            <button type="submit" name="addRecherche" class="form-recherche btn type2" data-btn="{{ 'diaporama.client.manager.recherche.bouton'|trans }}">{{ 'diaporama.client.manager.recherche.bouton'|trans }}</button>
+
+            <div class="clear"></div>
         </form>
     </div>
 
     <div class="diaporamas">
 
         {% for galerie in pagination %}
-            <div class="galerie">
-                <div class="galerieTitre">
-                    <h3><a href="{{ path('client_diaporama_view',{'slug': galerie.slug, 'id': galerie.id})}}">{{ galerie.titre|truncate(30) }}</a></h3>
-                </div>
-
+            <div class="galerie navFull" data-url="{{ path('client_diaporama_view',{'slug': galerie.slug, 'id': galerie.id})}}">
                 {% if galerie.image %}
-                    <div class="galerieImage">
-                        <img src="{{ asset('img/galerie/miniature/' ~ galerie.image) }}">
-                    </div>
+                    <img src="{{ asset('img/galerie/miniature/' ~ galerie.image) }}">
+                {% else %}
+                    <img src="{{ asset('img/galerie/miniature/alt.jpg') }}">
                 {% endif %}
 
-                <div class="galerieDate">
-                    <p>{{ galerie.created|date("d/m/Y") }}</p>
-                </div>
+                <div class="galeriePattern"></div>
 
-                <div class="galerieResume">
-                    <p>{{ galerie.resume|truncate(120) }}</p>
-                </div>
+                <div class="galerieBottom">
+                    {% if galerie.categorie %}
+                        <div class="galerieCategorie">
+                            <p>{{ galerie.categorie.nom }}</p>
+                        </div>
+                    {% endif %}
 
-                <div class="galerieLien">
-                    <a href="{{ path('client_diaporama_view',{'slug': galerie.slug, 'id': galerie.id})}}"><i class="fa fa-angle-right"></i> {{ 'diaporama.client.link.plus'|trans }}</a>
+                    <div class="galerieTitre">
+                        <h3><a href="{{ path('client_diaporama_view',{'slug': galerie.slug, 'id': galerie.id})}}">{{ galerie.titre|truncate(60) }}</a></h3>
+                    </div>
                 </div>
             </div>
         {% else %}
@@ -58,8 +60,5 @@
 
     </div>
 
-    {# display navigation #}
-    <div class="navigation">
-        {{ knp_pagination_render(pagination) }}
-    </div>
+    {{ knp_pagination_render(pagination) }}
 {% endblock %}

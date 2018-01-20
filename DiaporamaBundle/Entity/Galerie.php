@@ -363,7 +363,7 @@ class Galerie
                 ->save($this->getUploadRootDir().'tmp/'.$this->image);
 
         /* Miniature */
-        $size = new Box(300,190);
+        $size = new Box(370,370);
         $imagine->open($this->fileimage)
                 ->thumbnail($size, 'outbound')
                 ->save($this->getUploadRootDir().'miniature/'.$this->image);

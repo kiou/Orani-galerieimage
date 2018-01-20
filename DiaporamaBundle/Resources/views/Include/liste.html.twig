@@ -1,35 +1,47 @@
-{% if galeries %}
+<div class="bloc">
 
-    <div class="diaporamas">
-        {% for galerie in galeries %}
-            <div class="galerie">
-                <div class="galerieTitre">
-                    <h3><a href="{{ path('client_diaporama_view',{'slug': galerie.slug, 'id': galerie.id})}}">{{ galerie.titre|truncate(30) }}</a></h3>
-                </div>
-
-                {% if galerie.image %}
-                    <div class="galerieImage">
-                        <img src="{{ asset('img/galerie/miniature/' ~ galerie.image) }}">
-                    </div>
-                {% endif %}
-
-                <div class="galerieDate">
-                    <p>{{ galerie.created|date("d/m/Y") }}</p>
-                </div>
-
-                <div class="galerieResume">
-                    <p>{{ galerie.resume|truncate(120) }}</p>
-                </div>
-
-                <div class="galerieLien">
-                    <a href="{{ path('client_diaporama_view',{'slug': galerie.slug, 'id': galerie.id})}}"><i class="fa fa-angle-right"></i> {{ 'diaporama.client.link.plus'|trans }}</a>
-                </div>
-            </div>
-        {% endfor %}
+    <div class="blocHeader">
+        <h2 class="title">{{ 'diaporama.client.include.liste.title'|trans }}</h2>
+        <p>{{ 'diaporama.client.include.liste.soustitle'|trans }}</p>
     </div>
 
-{% else %}
-    <p>{{ 'diaporama.client.validators.empty'|trans }}</p>
-{% endif %}
+    <div class="diaporamas">
+        {% if galeries %}
+            {% for galerie in galeries %}
+                <div class="galerie navFull" data-url="{{ path('client_diaporama_view',{'slug': galerie.slug, 'id': galerie.id})}}">
+                    {% if galerie.image %}
+                        <img src="{{ asset('img/galerie/miniature/' ~ galerie.image) }}">
+                    {% else %}
+                        <img src="{{ asset('img/galerie/miniature/alt.jpg') }}">
+                    {% endif %}
 
-<div class="clear"></div>
+                    <div class="galeriePattern"></div>
+
+                    <div class="galerieBottom">
+                        {% if galerie.categorie %}
+                            <div class="galerieCategorie">
+                                <p>{{ galerie.categorie.nom }}</p>
+                            </div>
+                        {% endif %}
+
+                        <div class="galerieTitre">
+                            <h3><a href="{{ path('client_diaporama_view',{'slug': galerie.slug, 'id': galerie.id})}}">{{ galerie.titre|truncate(60) }}</a></h3>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>{{ 'diaporama.client.validators.empty'|trans }}</p>
+        {% endif %}
+
+        <div class="clear"></div>
+    </div>
+    
+    <div class="blocFooter">
+        <a href="#" class="btn" data-btn="{{ 'diaporama.client.include.liste.voirplus'|trans }}">{{ 'diaporama.client.include.liste.voirplus'|trans }}</a>
+    </div>
+
+</div>
+
+
+

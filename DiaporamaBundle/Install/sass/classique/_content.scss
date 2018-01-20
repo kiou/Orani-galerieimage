@@ -1,0 +1,102 @@
+/* DiaporamaBundle */
+.diaporamas{
+    margin: 0px -15px 0px -15px;
+}
+
+.galerie{
+    float: left;
+    width: calc((100% / 3) - 30px);
+    margin: 0px 15px 30px 15px;
+    @include border-radius($borderBox);
+    position: relative;
+    @include transition-property(opacity, transform);
+    @include transition-duration(0.3s);
+    @include transition-timing-function(ease);
+    @include transform(scale(1));
+    opacity:1;
+    cursor: pointer;
+    &:hover{
+        opacity:0.6;
+        @include transform(scale(0.96));
+    }
+    img{
+        width: 100%;
+        @include border-radius($borderBox);
+    }
+}
+
+.galeriePattern{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    z-index:1;
+    @include background-image(linear-gradient(to top, $gris, rgba($gris,0)));
+    @include border-radius($borderBox);
+}
+
+.galerieBottom{
+    position: absolute;
+    left: 30px;
+    bottom: 30px;
+    right: 30px;
+    z-index:2;
+    @include border-bottom-radius($borderBox);
+}
+
+.galerieCategorie{
+    margin-bottom: 5px;
+    p{
+        letter-spacing: 1px;
+        color: $blanc;
+    }
+}
+
+.galerieTitre{
+    h3{
+        font-weight: 300;
+        a{
+            color: $blanc;
+        }
+    }
+}
+
+.galerieViewImage{
+    margin-bottom: 30px;
+    img{
+        width: 100%;
+    }
+}
+
+.galerieViewBottom{
+    background-color: $blanc;
+    padding:25px;
+    margin-bottom: 25px;
+    @include border-radius($borderBox);
+}
+
+.galerieImages{
+    margin: 0px -5px 0px -5px;
+    padding: 40px 35px 30px 35px;
+    @include border-radius($borderBox);
+    background-color: $blanc;
+    .galerieImage{
+        margin:0px 5px 10px 5px;
+        width: calc(25% - 10px);
+        float: left;
+        @include transition-property(opacity, transform);
+        @include transition-duration(0.3s);
+        @include transition-timing-function(ease);
+        @include transform(scale(1));
+        opacity:1;
+        cursor: pointer;
+        &:hover{
+            opacity:0.6;
+            @include transform(scale(0.96));
+        }
+        img{
+            @include border-radius($borderBox);
+            width: 100%;
+        }
+    }

@@ -241,7 +241,7 @@ class Image
                 ->save($this->getUploadRootDir().'tmp/'.$this->image);
 
         /* Miniature */
-        $size = new Box(300,190);
+        $size = new Box(300,300);
         $imagine->open($this->fileimage)
                 ->thumbnail($size, 'outbound')
                 ->save($this->getUploadRootDir().'miniature/'.$this->image);
