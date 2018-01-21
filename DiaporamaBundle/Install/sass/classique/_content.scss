@@ -76,27 +76,28 @@
     @include border-radius($borderBox);
 }
 
-.galerieImages{
+.galerieImages {
     margin: 0px -5px 0px -5px;
     padding: 40px 35px 30px 35px;
     @include border-radius($borderBox);
     background-color: $blanc;
-    .galerieImage{
-        margin:0px 5px 10px 5px;
+    .galerieImage {
+        margin: 0px 5px 10px 5px;
         width: calc(25% - 10px);
         float: left;
         @include transition-property(opacity, transform);
         @include transition-duration(0.3s);
         @include transition-timing-function(ease);
         @include transform(scale(1));
-        opacity:1;
+        opacity: 1;
         cursor: pointer;
-        &:hover{
-            opacity:0.6;
+        &:hover {
+            opacity: 0.6;
             @include transform(scale(0.96));
         }
-        img{
+        img {
             @include border-radius($borderBox);
             width: 100%;
         }
     }
+}
